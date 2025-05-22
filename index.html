@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Double – Find Your Perfect Double Date</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- Replace the existing scroll-indicator nav with this new heart-nav -->
+  <nav class="heart-nav" aria-label="Page sections">
+    <button class="info-toggle" data-action="sidebar" id="navSidebarTrigger" aria-label="Show info sidebar" aria-controls="infoSidebar" aria-expanded="false">
+      <div class="dots-container">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="tooltip">More Info</span>
+    </button>
+  </nav>
+
+  <!-- Remove the old dots-btn-minimalist and add the new floating nav -->
+  <nav class="floating-nav" aria-label="Quick navigation">
+    <button class="floating-nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+      <svg class="heart-icon" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </button>
+    
+    <div class="floating-nav-menu" aria-hidden="true">
+      <button class="nav-item" data-section="hero">
+        <svg class="mini-heart" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-item" data-section="testimonials">
+        <svg class="mini-heart" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="nav-label">Reviews</span>
+      </button>
+      <button class="nav-item" data-section="features">
+        <svg class="mini-heart" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="nav-label">Features</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Replaced with Double Heart icon instead of single heart -->
+  <button class="info-sidebar-trigger double-heart" id="sidebarHeartTrigger" aria-label="Show info sidebar" aria-controls="infoSidebar" aria-expanded="false">
+    <svg class="heart-icon heart-left" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <svg class="heart-icon heart-right" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <span class="tooltip">Learn More</span>
+  </button>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <div class="container">
+      <a href="/" class="logo">Double</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#download">Download</a></li>
+      </ul>
+      <a href="#download" class="btn-nav">Get the App</a>
+    </div>
+  </nav>
+
+<!-- HERO SECTION -->
+<!-- ───────────────────────────────── Hero Section ───────────────────────────────── -->
+<!-- HERO SECTION -->
+<header class="hero" style="position: relative;">
+  <div class="hero-bg-gradient"></div>
+  <div class="overlay"></div>
+
+  <div class="container hero-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 480px; position: relative;">
+
+    <!-- ★ PARTICLING HEART LOGO + CTA COLUMN ★ -->
+    <div id="heartContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 0 auto; width: 100%; max-width: 800px;">
+      <canvas id="heartLogo" width="180" height="130" style="display: block; margin: 0 auto;"></canvas>
+      <h1 class="title" style="font-size: 5rem; margin-bottom: 1.5rem; text-align: center; width: 100%; display: block; margin-left: auto; margin-right: auto;">
+        <span>Dou</span><span>ble</span>
+      </h1>
+      <p class="subtitle" style="text-align: center;" id="typed-tagline">Find your perfect double date</p>
+      <p class="hero-sub"><span class="staggered-text" data-index="0">Super easy sign-ups.</span> <span class="staggered-text" data-index="1">Instant double matches.</span> <span class="staggered-text" data-index="2">Real connections.</span></p>
+      <a href="#download" class="btn-primary btn-glow-trail" style="margin: 1.5rem auto 0; display: inline-block;">Download the App</a>
+    </div>
+
+    <!-- Mission Statement -->
+    <div class="mission-statement animate-on-scroll fade-up" style="margin-top: 3rem; text-align: center; max-width: 700px;">
+      <p class="mission-text" style="font-size: 1.25rem; color: #fff; margin-bottom: 1.5rem; line-height: 1.6;">
+        Built by college students for college students. Our mission is to <span class="glowing-underline">make dating safer, more social, and more fun</span> — by turning every date into a team effort.
+      </p>
+    </div>
+
+    <!-- Stats Counter -->
+    <div class="stats-row animate-on-scroll fade-up" data-delay="100" style="display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.5rem; flex-wrap: wrap;">
+      <div class="stat-counter">
+        <div class="stat-icon">💗</div>
+        <div class="stat-value">12,000+</div>
+        <div class="stat-label">double dates</div>
+      </div>
+      <div class="stat-counter">
+        <div class="stat-icon">🏫</div>
+        <div class="stat-value">250+</div>
+        <div class="stat-label">college campuses</div>
+      </div>
+      <div class="stat-counter">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value">4.9</div>
+        <div class="stat-label">App Store Rating</div>
+      </div>
+    </div>
+
+    <!-- Founders Row - Improved Layout -->
+    <div class="founders-section animate-on-scroll fade-up" data-delay="200" style="margin-top: 2.5rem;">
+      <h3 class="section-label">Meet the Team</h3>
+      <div class="founders-row">
+        <div class="founder-card">
+          <div class="founder-avatar">
+            <div class="avatar-circle jm">JM</div>
+          </div>
+          <div class="founder-info">
+            <h3>Jess Morgan</h3>
+            <p>Co-Founder, Product Vision</p>
+          </div>
+        </div>
+        <div class="founder-card">
+          <div class="founder-avatar">
+            <div class="avatar-circle jh">JH</div>
+          </div>
+          <div class="founder-info">
+            <h3>Joseph Hudak</h3>
+            <p>Co-Founder, Engineering Lead</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Benefits Section (beside phone) -->
+    <div class="app-benefits-container">
+      <!-- Clean iPhone Mockup with App UI (repositioned) -->
+      <div class="iphone-mockup">
+        <img src="images/phone.png" alt="Double App Login Screen" class="app-screenshot">
+      </div>
+      
+      <!-- Benefits content repositioned to the right of the phone -->
+      <div class="benefits-content animate-on-scroll fade-in-right">
+        <h3 class="benefits-heading">Why You'll Love Double</h3>
+        <p class="benefits-text">
+          Double was built to make matching feel natural, instant, and fun. No long bios, no awkward icebreakers — just quick, meaningful connections with other pairs who are ready to meet. The app is ultra-intuitive, so signing up takes seconds and finding your perfect double feels effortless. From smooth onboarding to instant group matching, everything is optimized for speed, simplicity, and good vibes.
+        </p>
+      </div>
+    </div>
+
+    <!-- ★ TESTIMONIALS CAROUSEL ★ -->
+    <section class="testimonials-carousel" style="width: 100vw; min-height: 38vh; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; margin-top: 8rem; padding: 0; position: relative; z-index: 5;">
+      <h2 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 18px; letter-spacing: 0.01em; text-align: left; margin-left: 4vw;">What students are saying</h2>
+      <div class="carousel-track">
+        <!-- Review 1 -->
+        <div class="carousel-card" style="min-width: 320px; max-width: 340px; background: #1a1a1a; border-radius: 20px; box-shadow: 0 0 24px 0 #2B3F87AA; color: #fff; font-family: 'Poppins',sans-serif; font-size: 1.08rem; padding: 28px 26px 22px 26px; scroll-snap-align: start; transition: box-shadow 0.3s, transform 0.3s; border: 2px solid transparent;">
+          <div style="font-size: 1.3em; color: #FFD700; margin-bottom: 8px;">⭐⭐⭐⭐⭐</div>
+          <div style="font-style: italic; color: #fff; margin-bottom: 12px;">"My roommate and I matched with two guys from psych — now we're all inseparable."</div>
+          <div style="color: #ff407f; font-weight: 600;">— Emily R., OSU</div>
+        </div>
+        <!-- Review 2 -->
+        <div class="carousel-card" style="min-width: 320px; max-width: 340px; background: #1a1a1a; border-radius: 20px; box-shadow: 0 0 24px 0 #ff407faa; color: #fff; font-family: 'Poppins',sans-serif; font-size: 1.08rem; padding: 28px 26px 22px 26px; scroll-snap-align: start; transition: box-shadow 0.3s, transform 0.3s; border: 2px solid transparent;">
+          <div style="font-size: 1.3em; color: #FFD700; margin-bottom: 8px;">⭐⭐⭐⭐⭐</div>
+          <div style="font-style: italic; color: #fff; margin-bottom: 12px;">"Dating anxiety? Gone. My bestie and I had 3 amazing double dates."</div>
+          <div style="color: #2B3F87; font-weight: 600;">— Priya M., UCLA</div>
+        </div>
+        <!-- Review 3 -->
+        <div class="carousel-card" style="min-width: 320px; max-width: 340px; background: #1a1a1a; border-radius: 20px; box-shadow: 0 0 24px 0 #2B3F87AA; color: #fff; font-family: 'Poppins',sans-serif; font-size: 1.08rem; padding: 28px 26px 22px 26px; scroll-snap-align: start; transition: box-shadow 0.3s, transform 0.3s; border: 2px solid transparent;">
+          <div style="font-size: 1.3em; color: #FFD700; margin-bottom: 8px;">⭐⭐⭐⭐⭐</div>
+          <div style="font-style: italic; color: #fff; margin-bottom: 12px;">"This app just makes sense. Me and my roommate both hit it off."</div>
+          <div style="color: #ff407f; font-weight: 600;">— Jake L., Syracuse</div>
+        </div>
+        <!-- Review 4 -->
+        <div class="carousel-card" style="min-width: 320px; max-width: 340px; background: #1a1a1a; border-radius: 20px; box-shadow: 0 0 24px 0 #ff407faa; color: #fff; font-family: 'Poppins',sans-serif; font-size: 1.08rem; padding: 28px 26px 22px 26px; scroll-snap-align: start; transition: box-shadow 0.3s, transform 0.3s; border: 2px solid transparent;">
+          <div style="font-size: 1.3em; color: #FFD700; margin-bottom: 8px;">⭐⭐⭐⭐⭐</div>
+          <div style="font-style: italic; color: #fff; margin-bottom: 12px;">"If Bumble is brunch, Double is pregaming with the right people."</div>
+          <div style="color: #2B3F87; font-weight: 600;">— Grace K., NYU</div>
+        </div>
+      </div>
+      <style>
+        /* Sidebar and 3-dot button hover/focus */
+        #sidebarToggle {
+          box-shadow: 0 0 32px 0 #ff407f88, 0 0 32px 0 #2B3F8788;
+          animation: radiateGlow 1.6s infinite alternate;
+        }
+        #sidebarToggle:hover, #sidebarToggle:focus {
+          box-shadow: 0 0 0 6px #ff407f, 0 0 32px 0 #2B3F87AA, 0 0 32px 0 #ff407fAA;
+          outline: none;
+        }
+        @keyframes radiateGlow {
+          0% {
+            box-shadow: 0 0 16px 0 #ff407f88, 0 0 16px 0 #2B3F8788;
+          }
+          100% {
+            box-shadow: 0 0 36px 8px #ff407faa, 0 0 36px 8px #2B3F87aa;
+          }
+        }
+
+        /* Carousel full width on large screens */
+        .testimonials-carousel .carousel-track {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          display: flex;
+          flex: 1 1 auto;
+          justify-content: space-between;
+          gap: 48px;
+          padding-left: 4vw;
+          padding-right: 4vw;
+          align-items: stretch;
+          height: 100%;
+          min-height: 320px;
+        }
+        @media (max-width: 900px) {
+          .testimonials-carousel .carousel-track {
+            gap: 16px !important;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            height: auto;
+            min-height: 0;
+          }
+          .testimonials-carousel .carousel-card {
+            min-width: 90vw !important;
+            max-width: 98vw !important;
+            padding: 28px 18px 22px 18px;
+            height: auto;
+            min-height: 180px;
+            font-size: 1.05rem;
+          }
+        }
+        .carousel-card {
+          flex: 1 1 0;
+          min-width: 0;
+          max-width: none;
+          background: linear-gradient(135deg,rgba(43,63,135,0.12) 0%,rgba(255,64,127,0.10) 100%), #1a1a1a;
+          border-radius: 28px;
+          box-shadow:
+            0 2px 16px 0 rgba(43,63,135,0.10),
+            0 8px 32px 0 #2B3F8733,
+            0 0 0 2px #ff407f22,
+            0 0 0 8px #2B3F8722;
+          border: 1.5px solid #23234a;
+          padding: 38px 36px 32px 36px;
+          position: relative;
+          overflow: visible;
+          transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          min-height: 260px;
+          font-size: 1.15rem;
+        }
+        .carousel-card:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 28px;
+          pointer-events: none;
+          box-shadow: 0 0 32px 8px #ff407f33, 0 0 32px 8px #2B3F8733;
+          opacity: 0.18;
+        }
+        .carousel-card:hover {
+          box-shadow:
+            0 0 36px 0 #ff407f,
+            0 0 0 2px #FFD700,
+            0 8px 32px 0 #2B3F87AA,
+            0 0 0 8px #ff407f55;
+          border: 2px solid #ff407f;
+          transform: scale(1.045);
+          z-index: 2;
+        }
+        @media (min-width: 1200px) {
+          .testimonials-carousel .carousel-track {
+            min-height: 340px;
+            height: 28vh;
+          }
+          .carousel-card {
+            min-height: 260px;
+            height: 100%;
+            font-size: 1.22rem;
+            padding: 48px 40px 40px 40px;
+          }
+        }
+      </style>
+    </section>
+  </div>
+</header>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────── -->
+  
+  
+  <main>
+    <!-- FEATURES GRID -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="feature">
+          <h2>Double Profiles</h2>
+          <p>Create a group profile with your bestie and explore matches together.</p>
+        </div>
+        <div class="feature">
+          <h2>Verified Students</h2>
+          <p>College-only dating. Safe, fun, and designed for real connections.</p>
+        </div>
+        <div class="feature">
+          <h2>Interactive <span class="highlight">Prompts</span></h2>
+          <p>Show off personality with questions, photos, and shared interests.</p>
+        </div>
+      </div>
+    </section>
+   
+   <!-- CONTACT SECTION -->
+   <section id="contact" class="contact-section">
+     <div class="container">
+       <h2 class="animate-on-scroll fade-up">Let's Connect</h2>
+       <p class="contact-intro animate-on-scroll fade-up" data-delay="50">
+         We're always looking to connect with students, campus ambassadors, and potential partners.
+         Whether you have questions, feedback, or just want to say hello, we'd love to hear from you!
+       </p>
+       
+       <div class="contact-grid animate-on-scroll fade-up" data-delay="100">
+         <div class="contact-col">
+           <h3 class="contact-subtitle">Reach Out</h3>
+           <div class="contact-items">
+             <div class="contact-item">
+               <svg class="contact-icon bounce" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+               <a href="mailto:team@double.app">team@double.app</a>
+             </div>
+             <div class="contact-item">
+               <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"/></svg>
+               <a href="mailto:support@double.app">support@double.app</a>
+             </div>
+           </div>
+         </div>
+         
+         <div class="contact-col">
+           <h3 class="contact-subtitle">Connect</h3>
+           <div class="social-links">
+             <a href="#" class="social-link" aria-label="Instagram" target="_blank">
+               <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+             </a>
+             <a href="#" class="social-link" aria-label="Twitter" target="_blank">
+               <svg class="social-icon" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+             </a>
+             <a href="#" class="social-link" aria-label="TikTok" target="_blank">
+               <svg class="social-icon" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+             </a>
+           </div>
+         </div>
+       </div>
+       
+       <div class="contact-founders animate-on-scroll fade-up" data-delay="150">
+         <h3 class="contact-subtitle">About Us</h3>
+         <p class="mission-text animate-on-scroll fade-up" data-delay="160">
+           Double was created by college students who were tired of awkward dating apps. 
+           Our mission is to make dating safer, more fun, and more social by turning every date into a team effort.
+         </p>
+         <div class="founders-row">
+           <div class="founder-card">
+             <div class="founder-avatar">
+               <div class="avatar-circle jm">JM</div>
+             </div>
+             <div class="founder-info">
+               <h3>Jess Morgan</h3>
+               <p>Co-Founder, Product Vision</p>
+               <div class="founder-contact">
+                 <a href="#" class="social-link small" aria-label="LinkedIn">
+                   <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                 </a>
+               </div>
+             </div>
+           </div>
+           <div class="founder-card">
+             <div class="founder-avatar">
+               <div class="avatar-circle jh">JH</div>
+             </div>
+             <div class="founder-info">
+               <h3>Joseph Hudak</h3>
+               <p>Co-Founder, Engineering Lead</p>
+               <div class="founder-contact">
+                 <a href="mailto:hudakajoseph@gmail.com" class="social-link small" aria-label="Email">
+                   <svg class="social-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                 </a>
+                 <a href="https://www.linkedin.com/in/joeyhudak2028" target="_blank" class="social-link small" aria-label="LinkedIn">
+                   <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                 </a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <div class="cta-wrapper animate-on-scroll fade-up" data-delay="200">
+         <p class="cta-text">Interested in bringing Double to your campus?</p>
+         <a href="mailto:campus@double.app" class="btn-primary btn-glow-trail">Become a Campus Rep</a>
+       </div>
+     </div>
+   </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section id="download" class="download">
+      <div class="container">
+        <h2>Ready to double up your dates?</h2>
+        <a href="#" class="btn-secondary">Download on the App Store</a>
+        <a href="#" class="btn-secondary alt">Get it on Google Play</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Double. Made with ❤️ for college students everywhere.</p>
+    </div>
+  </footer>
+
+</body>
+<script>
+// Draw a heart outline at (cx, cy) with given size, color, and glow
+function drawHeartOutline(ctx, color, cx, cy, size, lineWidth, glow) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(cx, cy + size * 0.25);
+  ctx.bezierCurveTo(
+    cx, cy, 
+    cx - size, cy, 
+    cx - size, cy + size * 0.6
+  );
+  ctx.bezierCurveTo(
+    cx - size, cy + size * 1.1, 
+    cx, cy + size * 1.4, 
+    cx, cy + size * 1.8
+  );
+  ctx.bezierCurveTo(
+    cx, cy + size * 1.4, 
+    cx + size, cy + size * 1.1, 
+    cx + size, cy + size * 0.6
+  );
+  ctx.bezierCurveTo(
+    cx + size, cy, 
+    cx, cy, 
+    cx, cy + size * 0.25
+  );
+  ctx.closePath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = glow;
+  ctx.stroke();
+  ctx.restore();
+}
+
+// Animation parameters
+const DURATION = 1200; // ms
+const SCALE_MIN = 1.0;
+const SCALE_MAX = 1.1;
+const GLOW_MIN = 8;
+const GLOW_MAX = 24;
+const LINE_MIN = 3;
+const LINE_MAX = 5;
+
+const canvas = document.getElementById('heartLogo');
+const ctx = canvas.getContext('2d');
+const w = canvas.width, h = canvas.height;
+
+// Heart positions for interlocking effect
+const cx1 = w / 2 - 22;
+const cy1 = h / 2 - 8;
+const cx2 = w / 2 + 22;
+const cy2 = h / 2 - 8;
+const size = 28;
+
+function getPulse(t) {
+  const phase = (t % DURATION) / DURATION;
+  const scale = SCALE_MIN + (SCALE_MAX - SCALE_MIN) * 0.5 * (1 - Math.cos(phase * 2 * Math.PI));
+  const glow = GLOW_MIN + (GLOW_MAX - GLOW_MIN) * 0.5 * (1 - Math.cos(phase * 2 * Math.PI));
+  const line = LINE_MIN + (LINE_MAX - LINE_MIN) * 0.5 * (1 - Math.cos(phase * 2 * Math.PI));
+  return { scale, glow, line };
+}
+
+function render() {
+  const now = performance.now();
+  const { scale, glow, line } = getPulse(now);
+  ctx.clearRect(0, 0, w, h);
+
+  // Draw left (blue) heart
+  ctx.save();
+  ctx.translate(cx1, cy1);
+  ctx.scale(scale, scale);
+  drawHeartOutline(ctx, '#2B3F87', 0, 0, size, line, glow);
+  ctx.restore();
+
+  // Draw right (pink) heart
+  ctx.save();
+  ctx.translate(cx2, cy2);
+  ctx.scale(scale, scale);
+  drawHeartOutline(ctx, '#ff407f', 0, 0, size, line, glow);
+  ctx.restore();
+
+  requestAnimationFrame(render);
+}
+
+render();
+
+// Add 3D tilt effect to phone mockup
+const phoneImg = document.querySelector('.app-screenshot');
+const phoneContainer = document.querySelector('.iphone-mockup');
+
+if (phoneImg && phoneContainer) {
+  phoneContainer.addEventListener('mousemove', (e) => {
+    const rect = phoneContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const moveX = (x - centerX) / centerX * 5;
+    const moveY = (y - centerY) / centerY * 5;
+    
+    phoneImg.style.transform = `perspective(1000px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
+  });
+  
+  phoneContainer.addEventListener('mouseleave', () => {
+    phoneImg.style.transform = 'perspective(1000px) rotateY(2deg) rotateX(1deg)';
+  });
+}
+
+// Handle scroll animations
+function handleScrollAnimations() {
+  const animatedElements = document.querySelectorAll('.animate-on-scroll');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, delay);
+        
+        observer.unobserve(el);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  
+  animatedElements.forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// Call animation handler when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  handleScrollAnimations();
+  
+  // Typed text animation for tagline
+  const typedTagline = document.getElementById('typed-tagline');
+  if (typedTagline) {
+    const text = typedTagline.innerHTML;
+    typedTagline.innerHTML = '';
+    
+    let i = 0;
+    const typeWriter = () => {
+      if (i < text.length) {
+        typedTagline.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      } else {
+        // Add a blinking cursor after typing is done
+        const cursor = document.createElement('span');
+        cursor.className = 'typed-cursor';
+        cursor.textContent = '|';
+        typedTagline.appendChild(cursor);
+      }
+    };
+    
+    setTimeout(typeWriter, 500);
+  }
+  
+  // Setup motion blur effect on scroll
+  const addMotionBlur = () => {
+    const sections = document.querySelectorAll('.mission-statement, .stats-row, .founders-section');
+    
+    const handleScroll = () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInView) {
+          section.classList.remove('motion-blur', 'animate');
+        } else {
+          section.classList.add('motion-blur', 'animate');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+  };
+  
+  addMotionBlur();
+  
+  // Animate staggered text elements separately
+  const staggeredTexts = document.querySelectorAll('.staggered-text');
+  
+  if (staggeredTexts.length > 0) {
+    // Initial hide all
+    staggeredTexts.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+    });
+    
+    // Then animate each with delay
+    staggeredTexts.forEach((el, index) => {
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 500 + (index * 1000)); // 500ms initial delay, then 1s between each
+    });
+  }
+});
+
+// Sidebar toggle logic
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebar = document.getElementById('infoSidebar');
+const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+const sidebarClose = document.getElementById('sidebarClose');
+
+function openSidebar() {
+  sidebar.style.transform = 'translateX(0)';
+  sidebar.setAttribute('aria-hidden', 'false');
+  sidebarToggle.setAttribute('aria-expanded', 'true');
+  sidebarBackdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  sidebar.focus();
+}
+function closeSidebar() {
+  sidebar.style.transform = 'translateX(100%)';
+  sidebar.setAttribute('aria-hidden', 'true');
+  sidebarToggle.setAttribute('aria-expanded', 'false');
+  sidebarBackdrop.style.display = 'none';
+  document.body.style.overflow = '';
+}
+if (sidebarToggle && sidebar && sidebarBackdrop && sidebarClose) {
+  sidebarToggle.addEventListener('click', (e) => {
+    if (sidebar.getAttribute('aria-hidden') === 'true') {
+      openSidebar();
+    } else {
+      closeSidebar();
+    }
+  });
+  sidebarClose.addEventListener('click', closeSidebar);
+  sidebarBackdrop.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSidebar();
+  });
+  // Trap focus in sidebar
+  sidebar.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      const focusable = sidebar.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+      openSidebar();
+    }
+  });
+}
+</script>
+<style>
+/* Sidebar and 3-dot button hover/focus */
+#sidebarToggle:hover, #sidebarToggle:focus {
+  box-shadow: 0 0 0 3px #ff407f, 0 2px 12px #2B3F87AA;
+  outline: none;
+}
+#infoSidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #ff407f #222;
+}
+#infoSidebar::-webkit-scrollbar {
+  width: 8px;
+}
+#infoSidebar::-webkit-scrollbar-thumb {
+  background: #ff407f;
+  border-radius: 8px;
+}
+#infoSidebar::-webkit-scrollbar-track {
+  background: #222;
+}
+#sidebarClose:hover, #sidebarClose:focus {
+  color: #ff407f;
+  opacity: 1;
+}
+.stat-card, .carousel-card {
+  transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+}
+.stat-card:hover, .carousel-card:hover {
+  box-shadow: 0 0 36px 0 #ff407f, 0 0 0 2px #FFD700;
+  border: 2px solid #ff407f;
+  transform: scale(1.035);
+  z-index: 2;
+}
+.testimonials-carousel {
+  width: 100vw;
+  min-height: 38vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  margin: 60px 0 0 0;
+  padding: 0;
+}
+.testimonials-carousel .carousel-track {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  gap: 48px;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  align-items: stretch;
+  height: 100%;
+  min-height: 320px;
+}
+.carousel-card {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+  background: linear-gradient(135deg,rgba(43,63,135,0.12) 0%,rgba(255,64,127,0.10) 100%), #1a1a1a;
+  border-radius: 28px;
+  box-shadow:
+    0 2px 16px 0 rgba(43,63,135,0.10),
+    0 8px 32px 0 #2B3F8733,
+    0 0 0 2px #ff407f22,
+    0 0 0 8px #2B3F8722;
+  border: 1.5px solid #23234a;
+  padding: 38px 36px 32px 36px;
+  position: relative;
+  overflow: visible;
+  transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 260px;
+  font-size: 1.15rem;
+}
+.carousel-card:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  pointer-events: none;
+  box-shadow: 0 0 32px 8px #ff407f33, 0 0 32px 8px #2B3F8733;
+  opacity: 0.18;
+}
+.carousel-card:hover {
+  box-shadow:
+    0 0 36px 0 #ff407f,
+    0 0 0 2px #FFD700,
+    0 8px 32px 0 #2B3F87AA,
+    0 0 0 8px #ff407f55;
+  border: 2px solid #ff407f;
+  transform: scale(1.045);
+  z-index: 2;
+}
+@media (min-width: 1200px) {
+  .testimonials-carousel .carousel-track {
+    min-height: 340px;
+    height: 28vh;
+  }
+  .carousel-card {
+    min-height: 260px;
+    height: 100%;
+    font-size: 1.22rem;
+    padding: 48px 40px 40px 40px;
+  }
+}
+@media (max-width: 900px) {
+  .testimonials-carousel .carousel-track {
+    gap: 16px !important;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    height: auto;
+    min-height: 0;
+  }
+  .carousel-card {
+    min-width: 90vw !important;
+    max-width: 98vw !important;
+    padding: 28px 18px 22px 18px;
+    height: auto;
+    min-height: 180px;
+    font-size: 1.05rem;
+  }
+}
+/* Clean iPhone Mockup Styles */
+.iphone-mockup {
+  max-width: clamp(280px, 30vw, 400px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+.app-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 32px;
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0,.3),
+    0 8px 16px rgba(43, 63, 135, 0.15),
+    0 4px 12px rgba(255, 64, 127, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.iphone-mockup::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: -15px;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, transparent 70%);
+  filter: blur(3px);
+  z-index: -1;
+}
+</style>
+<aside id="infoSidebar" class="glass-panel step-sidebar" aria-hidden="true" tabindex="-1">
+  <button id="sidebarClose" aria-label="Close info sidebar" class="sidebar-close">&times;</button>
+  
+  <!-- Mission Statement -->
+  <div class="sidebar-section mission">
+    <h2>Our Mission</h2>
+    <p>Making college dating safer, more genuine, and twice the fun through the power of friendship.</p>
+  </div>
+
+  <!-- Why Double -->
+  <div class="sidebar-section why-double">
+    <h2>Why Double?</h2>
+    <div class="value-props">
+      <div class="value-prop">
+        <div class="icon">👥</div>
+        <h3>Safety in Numbers</h3>
+        <p>Double the fun, double the safety</p>
+      </div>
+      <div class="value-prop">
+        <div class="icon">💝</div>
+        <h3>Real Connections</h3>
+        <p>More natural, less awkward</p>
+      </div>
+      <div class="value-prop">
+        <div class="icon">🎓</div>
+        <h3>Campus Verified</h3>
+        <p>Students only, always</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats & Growth -->
+  <div class="sidebar-section stats">
+    <h2>Growing Fast</h2>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-number">12k+</div>
+        <div class="stat-label">Double Dates</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">250+</div>
+        <div class="stat-label">Campuses</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4.9</div>
+        <div class="stat-label">App Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it Works -->
+  <div class="sidebar-section how-it-works">
+    <h2>How it Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Team Up</h3>
+        <p>Create a duo profile with your bestie</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Match Up</h3>
+        <p>Find other pairs that click with both of you</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Meet Up</h3>
+        <p>Plan fun double dates on campus</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section (Similar to Founders) -->
+  <div class="sidebar-section contact">
+    <h2>Let's Connect</h2>
+    <div class="contact-founders">
+      <div class="founder-contact-card">
+        <div class="avatar-circle jm">JM</div>
+        <div class="founder-info">
+          <h3>Jess Morgan</h3>
+          <p>Co-Founder, Product Vision</p>
+        </div>
+      </div>
+      <div class="founder-contact-card">
+        <div class="avatar-circle jh">JH</div>
+        <div class="founder-info">
+          <h3>Joseph Hudak</h3>
+          <p>Co-Founder, Engineering Lead</p>
+          <div class="contact-links">
+            <a href="mailto:hudakajoseph@gmail.com" class="contact-link" aria-label="Email Joseph Hudak">
+              <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/joeyhudak2028" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Joseph Hudak on LinkedIn">
+              <svg class="contact-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="general-contact">
+      <div class="contact-item">
+        <svg class="contact-icon bounce" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:team@double.app">team@double.app</a>
+      </div>
+    </div>
+  </div>
+</aside>
+<div id="sidebarBackdrop" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.18); z-index:99; backdrop-filter: blur(4px);"></div>
+<script src="script.js"></script>
+</html>
