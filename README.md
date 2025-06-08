@@ -1,6 +1,3 @@
-Here’s a revised version of your README that’s tailored more toward **clients**, stakeholders, and demo viewers\*\* (not developers). It keeps the professionalism but drops the dev jargon, focusing on the **experience**, **value**, and **features**:
-
----
 
 ## 💖 **Double — The Double Dating App**
 
