@@ -22,6 +22,7 @@ interface AuthContextType extends AuthState {
   login: (email: string, password: string, rememberMe?: boolean) => Promise<void>;
   createAccount: (data: CreateAccountData) => Promise<void>;
   logout: () => Promise<void>;
+  forceLogout: () => Promise<void>;
   resetAllData: () => Promise<void>;
   setJustLoggedIn: (value: boolean) => void;
   checkProfileCompletion: () => Promise<boolean>;
@@ -60,7 +61,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await userService.initialize();
       await groupService.initialize();
 
-      // SCENARIO 3: Check for "Remember Me" session
+      // DEV MODE: Check if we should force fresh login for testing
+      const forceLogin = await AsyncStorage.getItem('@force_fresh_login');
+      if (forceLogin === 'true') {
+        console.log('[AuthContext] DEV MODE: Forcing fresh login for testing');
+        await AsyncStorage.multiRemove(['@user_data', '@remembered_session', '@force_fresh_login']);
+        setState({
+          isSignedIn: false,
+          inGroup: false,
+          userId: null,
+          username: null,
+          email: null,
+          isProfileComplete: false,
+          currentUser: null,
+        });
+        setLoading(false);
+        return;
+      }
+
+      // TEMPORARY: Force fresh login for testing - comment out auto-login
+      console.log('[AuthContext] TEMPORARY: Forcing fresh login for testing');
+      await AsyncStorage.multiRemove(['@user_data', '@remembered_session']);
+      setState({
+        isSignedIn: false,
+        inGroup: false,
+        userId: null,
+        username: null,
+        email: null,
+        isProfileComplete: false,
+        currentUser: null,
+      });
+      setLoading(false);
+      return;
+
+      /*
+      // SCENARIO 3: Check for "Remember Me" session first
       const rememberedSession = await AsyncStorage.getItem('@remembered_session');
       
       if (rememberedSession) {
@@ -86,6 +121,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         await AsyncStorage.removeItem('@remembered_session');
       }
 
+      // Check for current user data (from recent login)
+      const userData = await AsyncStorage.getItem('@user_data');
+      if (userData) {
+        try {
+          const user = JSON.parse(userData);
+          console.log('[AuthContext] Found existing user data, restoring session for:', user.email);
+          await setUserState(user);
+          setJustLoggedIn(false); // Don't trigger navigation since user is already logged in
+          setLoading(false);
+          return;
+        } catch (error) {
+          console.error('[AuthContext] Error parsing user data:', error);
+          // Clear invalid user data
+          await AsyncStorage.removeItem('@user_data');
+        }
+      }
+
       // SCENARIO 1 & 2: Default to logged out state (show login screen)
       console.log('[AuthContext] SCENARIO 1/2: Starting with clean login state');
       setState({
@@ -97,6 +149,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isProfileComplete: false,
         currentUser: null,
       });
+      */
     } catch (error) {
       console.error('[AuthContext] Initialization error:', error);
     } finally {
@@ -473,8 +526,8 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
     try {
       console.log('[AuthContext] Logging out user:', state.userId);
       
-      // Clear remembered session
-      await AsyncStorage.removeItem('@remembered_session');
+      // Clear remembered session and user data
+      await AsyncStorage.multiRemove(['@remembered_session', '@user_data']);
       
       // Reset state
       setState({
@@ -493,6 +546,39 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
     } catch (error) {
       console.error('[AuthContext] Logout error:', error);
       toastService.error('Failed to logout properly');
+    }
+  };
+
+  const forceLogout = async () => {
+    try {
+      console.log('[AuthContext] FORCE LOGOUT - Clearing all auth data');
+      
+      // Clear all auth-related data
+      await AsyncStorage.multiRemove([
+        '@remembered_session', 
+        '@user_data', 
+        '@demo_mode', 
+        '@dev_mode'
+      ]);
+      
+      // Set flag to force fresh login on next initialization
+      await AsyncStorage.setItem('@force_fresh_login', 'true');
+      
+      // Reset state
+      setState({
+        isSignedIn: false,
+        inGroup: false,
+        userId: null,
+        username: null,
+        email: null,
+        isProfileComplete: false,
+        currentUser: null,
+      });
+
+      setJustLoggedIn(false);
+      console.log('[AuthContext] Force logout complete - will show login on restart');
+    } catch (error) {
+      console.error('[AuthContext] Force logout error:', error);
     }
   };
 
@@ -626,6 +712,7 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
         markProfileComplete,
         updateUserData,
         resetAllData,
+        forceLogout,
       }}
     >
       {children}
