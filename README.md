@@ -96,4 +96,3 @@ This project is for **demonstration purposes** only. All rights reserved.
 
 ---
 
-Let me know if you'd like me to generate a matching one-pager or PDF version for presentations.
