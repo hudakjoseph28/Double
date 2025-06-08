@@ -1,32 +1,56 @@
-# 🚀 DoubleDate - Revolutionary Dating App
+# 💖 Double — The Double Dating App
 
-**A modern React Native dating app that connects couples for double dates, reducing first-date anxiety and creating natural group dynamics.**
+**A revolutionary social matching app that makes double dating effortless, fun, and instant.**
 
-## 🎯 Concept
+Double revolutionizes online dating by focusing on **couple-to-couple matching** instead of individual profiles. Users browse and like other couples, creating 4-person group chats for coordinating double dates.
 
-DoubleDate revolutionizes online dating by focusing on **couple-to-couple matching** instead of individual profiles. Users browse and like other couples, creating 4-person group chats for coordinating double dates.
+---
 
-### Key Features
-- **Couple Browsing**: See pairs of people as units, not individuals
-- **Group Date Focus**: Every match is a double date opportunity  
-- **AI Assistant**: Smart in-app helper with comprehensive app knowledge
-- **Modern UI**: Gradient message bubbles, smooth animations, professional design
-- **Real-time Chat**: Instant messaging with typing indicators and intelligent responses
+## 📁 Project Structure
+
+This repository includes the complete Double dating platform:
+
+```
+/
+├── website/              # Landing website (HTML/CSS/JS)
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   ├── effects.js
+│   ├── IphoneMockup3D.jsx
+│   └── images/
+│
+├── app/                  # React Native + Expo mobile app
+│   ├── (auth)/          # Login/signup flows  
+│   ├── (tabs)/          # Main app tabs (Double, Find, Messages, Likes, Profile)
+│   ├── components/      # Reusable UI components
+│   ├── services/        # Business logic (User, Group, Analytics, OpenAI)
+│   ├── constants/       # Colors, settings, configuration
+│   ├── context/         # React Context (Auth, state management)
+│   ├── types/           # TypeScript interfaces and types
+│   └── assets/          # Images, fonts, static resources
+│
+├── .gitignore
+└── README.md
+```
 
 ---
 
 ## 🏃‍♂️ Quick Start
 
-### Prerequisites
+### Mobile App (React Native/Expo)
+
+**Prerequisites:**
 - Node.js 18+ 
 - Expo CLI (`npm install -g @expo/cli`)
 - iOS Simulator or Android emulator
 
-### Installation
+**Installation:**
 ```bash
-# Clone and install
-git clone [repository-url]
-cd doubledate-app
+# Navigate to app directory
+cd app/
+
+# Install dependencies
 npm install
 
 # Start development server
@@ -36,16 +60,18 @@ npx expo start --clear
 # Use Expo Go app or press 'i' for iOS simulator
 ```
 
-### Demo Login
-Use the development account to test all features:
+**Demo Login:**
 - **Email**: `testing@gmail.com`
 - **Password**: `test123`
 
+### Website
+Open `website/index.html` in your browser or serve it with any web server.
+
 ---
 
-## 📱 App Structure
+## 📱 App Features
 
-### Main Tabs
+### Core Dating Experience
 - **🏠 Double**: Browse couple profiles and like them (core feature)
 - **🔍 Find**: Discover individual users to form couples with
 - **💬 Messages**: Chat with AI assistant and group matches
@@ -62,7 +88,7 @@ Use the development account to test all features:
 
 ## 🔧 Technical Stack
 
-### Frontend
+### Mobile App
 - **React Native/Expo**: Cross-platform mobile development
 - **TypeScript**: Type safety and enhanced developer experience
 - **React Native Reanimated**: 60fps animations and gesture handling
@@ -73,6 +99,10 @@ Use the development account to test all features:
 - **OpenAI Integration**: ChatGPT-4 API for intelligent AI assistant responses
 - **Real-time Messaging**: Global message store with state synchronization
 - **Mock Data**: 30+ realistic bot users for comprehensive testing
+
+### Website
+- **HTML5/CSS3/JavaScript**: Modern responsive design
+- **3D iPhone Mockup**: Interactive device demonstrations
 
 ### Key Services
 ```typescript
@@ -124,24 +154,6 @@ The app features a sophisticated AI assistant powered by OpenAI's ChatGPT-4 API:
 
 ---
 
-## 📂 Project Structure
-
-```
-doubledate-app/
-├── app/                 # Expo Router pages and navigation
-│   ├── (auth)/         # Login/signup flows  
-│   ├── (tabs)/         # Main app tabs (Double, Find, Messages, Likes, Profile)
-│   └── [dynamic]/      # Dynamic routes (chat, profile views)
-├── components/         # Reusable UI components
-├── services/          # Business logic (User, Group, Analytics, OpenAI)
-├── constants/         # Colors, settings, configuration
-├── context/           # React Context (Auth, state management)
-├── types/             # TypeScript interfaces and types
-└── assets/            # Images, fonts, static resources
-```
-
----
-
 ## 🚀 Deployment Ready
 
 This version is optimized for demonstration and showcasing:
@@ -161,4 +173,4 @@ This project is for demonstration purposes. All rights reserved.
 
 ---
 
-**Built with ❤️ using React Native, TypeScript, and modern mobile development practices.** 
+**Built with ❤️ using React Native, TypeScript, and modern mobile development practices.**
