@@ -36,7 +36,6 @@ export default function AnalyticsDashboard() {
       setDashboardData(data);
       setLoading(false);
     } catch (error) {
-      console.error('📊 Error loading dashboard data:', error);
       setLoading(false);
     }
   };

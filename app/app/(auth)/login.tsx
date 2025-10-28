@@ -108,7 +108,6 @@ export default function LoginScreen() {
       await login(email.trim(), password, rememberMe);
       // Navigation will be handled by AuthGate after successful login
     } catch (error) {
-      console.error('[LoginScreen] Login failed:', error);
       // Error toast is handled in AuthContext
     } finally {
       setIsLoading(false);

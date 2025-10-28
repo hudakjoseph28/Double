@@ -68,14 +68,12 @@ class GroupService {
         this.nextGroupId = parseInt(nextGroupId, 10);
       }
 
-      console.log('[GroupService] Initialized with', this.invites.size, 'invites and', this.groups.size, 'groups');
       
       // Create bot groups if in development and no groups exist
       if (__DEV__ && this.groups.size === 0) {
         await this.createBotGroups();
       }
     } catch (error) {
-      console.error('[GroupService] Failed to initialize:', error);
     }
   }
 
@@ -87,7 +85,6 @@ class GroupService {
       await AsyncStorage.setItem('@next_invite_id', this.nextInviteId.toString());
       await AsyncStorage.setItem('@next_group_id', this.nextGroupId.toString());
     } catch (error) {
-      console.error('[GroupService] Failed to save to storage:', error);
     }
   }
 
@@ -138,10 +135,8 @@ class GroupService {
       this.invites.set(inviteId, invite);
       await this.saveToStorage();
 
-      console.log('[GroupService] Invite sent:', inviteId, 'from', fromUserName, 'to', toUserName);
       return { success: true };
     } catch (error) {
-      console.error('[GroupService] Failed to send invite:', error);
       return { success: false, error: 'Failed to send invite' };
     }
   }
@@ -181,15 +176,12 @@ class GroupService {
 
         await this.saveToStorage();
 
-        console.log('[GroupService] Group created:', groupId, 'with', invite.fromUserName, 'and', invite.toUserName);
         return { success: true, groupId };
       } else {
         await this.saveToStorage();
-        console.log('[GroupService] Invite declined:', inviteId);
         return { success: true };
       }
     } catch (error) {
-      console.error('[GroupService] Failed to respond to invite:', error);
       return { success: false, error: 'Failed to respond to invite' };
     }
   }
@@ -238,10 +230,8 @@ class GroupService {
 
       await this.saveToStorage();
 
-      console.log('[GroupService] User left group:', userId, 'from group', groupId);
       return { success: true };
     } catch (error) {
-      console.error('[GroupService] Failed to leave group:', error);
       return { success: false, error: 'Failed to leave group' };
     }
   }
@@ -306,9 +296,7 @@ class GroupService {
       }
 
       await this.saveToStorage();
-      console.log('[GroupService] Created 15 bot groups for testing');
     } catch (error) {
-      console.error('[GroupService] Failed to create bot groups:', error);
     }
   }
 
@@ -319,7 +307,6 @@ class GroupService {
     this.nextInviteId = 1;
     this.nextGroupId = 1;
     await AsyncStorage.multiRemove(['@group_invites', '@groups', '@user_groups', '@next_invite_id', '@next_group_id']);
-    console.log('[GroupService] All group data cleared');
   }
 
   // Debug function

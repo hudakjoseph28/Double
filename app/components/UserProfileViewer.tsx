@@ -97,7 +97,6 @@ export default function UserProfileViewer({ user, onClose }: UserProfileViewerPr
         });
       }
     } catch (error) {
-      console.error('[UserProfileViewer] Error loading profile:', error);
     } finally {
       setLoading(false);
     }
@@ -127,7 +126,6 @@ export default function UserProfileViewer({ user, onClose }: UserProfileViewerPr
         }
       }
     } catch (error) {
-      console.error('Error checking group status:', error);
     }
   };
 

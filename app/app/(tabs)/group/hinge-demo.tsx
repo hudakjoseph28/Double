@@ -53,15 +53,12 @@ const sampleDoubleGroup = {
 
 export default function HingeDemoScreen() {
   const handleLike = () => {
-    console.log('Group liked!');
   };
 
   const handleMessage = () => {
-    console.log('Message sent!');
   };
 
   const handlePersonPress = (person: any) => {
-    console.log('Person pressed:', person.name);
     // Navigate to person's full profile
   };
 

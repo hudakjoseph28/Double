@@ -163,12 +163,10 @@ export default function ProfileSetupWelcomeScreen() {
   }, []);
 
   const handleStartSetup = () => {
-    console.log('[ProfileSetup] Starting setup, navigating to photos');
     router.push('./photos');
   };
 
   const handleStepPress = (step: SetupStep) => {
-    console.log(`[ProfileSetup] Navigating to step: ${step.id}`);
     router.push(step.route as any);
   };
 

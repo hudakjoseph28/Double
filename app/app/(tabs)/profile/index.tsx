@@ -200,7 +200,6 @@ export default function ProfileScreen() {
 
       setProfileData(profileData);
     } catch (error) {
-      console.warn('⚠️ Error loading profile data:', error);
     }
   };
 
@@ -211,7 +210,6 @@ export default function ProfileScreen() {
       await AsyncStorage.setItem(profileKey, JSON.stringify(data));
       setProfileData(data);
     } catch (error) {
-      console.warn('⚠️ Error saving profile data:', error);
     }
   };
 

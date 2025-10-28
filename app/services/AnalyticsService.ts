@@ -89,7 +89,6 @@ class AnalyticsService {
       // Track session start
       this.trackEvent('session_start');
     } catch (error) {
-      console.error('🚨 Error initializing analytics:', error);
     }
   }
 
@@ -128,7 +127,6 @@ class AnalyticsService {
       // Save to storage as backup
       await AsyncStorage.setItem('@analytics_queue', JSON.stringify(this.eventQueue));
     } catch (error) {
-      console.error('🚨 Error tracking event:', error);
     }
   }
 
@@ -162,11 +160,9 @@ class AnalyticsService {
         await AsyncStorage.removeItem('@analytics_queue');
       } else {
         this.eventQueue.unshift(...eventsToSend);
-        console.error('🚨 Failed to send analytics events');
       }
       */
     } catch (error) {
-      console.warn('⚠️ Error in demo analytics flush:', error);
       // In demo mode, don't re-queue events to avoid infinite retries
     }
   }

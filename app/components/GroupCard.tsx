@@ -233,9 +233,6 @@ export default function GroupCard({ group, onNext, onScroll, isViewOnly }: Group
               source={getGroupImageSource(group)} 
               style={styles.image}
               resizeMode="cover"
-              onError={(error) => {
-                console.warn('Group image failed to load:', error.nativeEvent.error);
-              }}
             />
             <View style={styles.imageBorder} />
             {!isViewOnly && (
@@ -267,9 +264,6 @@ export default function GroupCard({ group, onNext, onScroll, isViewOnly }: Group
                 source={getImageSource(photo)} 
                 style={styles.image} 
                 resizeMode="cover"
-                onError={(error) => {
-                  console.warn('User photo failed to load:', error.nativeEvent.error);
-                }}
               />
               <View style={styles.imageBorder} />
               {!isViewOnly && (
@@ -302,9 +296,6 @@ export default function GroupCard({ group, onNext, onScroll, isViewOnly }: Group
                 source={getImageSource(photo)} 
                 style={styles.image} 
                 resizeMode="cover"
-                onError={(error) => {
-                  console.warn('User photo failed to load:', error.nativeEvent.error);
-                }}
               />
               <View style={styles.imageBorder} />
               {!isViewOnly && (

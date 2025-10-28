@@ -87,7 +87,6 @@ export default function MessagesScreen() {
       const isDevAccount = currentUser?.email === 'testing@gmail.com';
       
       if (isDemoAccount || isDevAccount) {
-        console.log('🤖 Loading AI assistant chat for demo/dev account');
         
         // For demo/dev accounts, show ONLY the AI Assistant chat
         const assistantChatId = isDemoAccount 
@@ -98,7 +97,6 @@ export default function MessagesScreen() {
         
         if (chatData) {
           const parsedChat = JSON.parse(chatData);
-          console.log('✅ Found AI assistant chat data:', parsedChat.groupName);
           
           const aiAssistantChat: GroupChat = {
             id: assistantChatId,
@@ -114,7 +112,6 @@ export default function MessagesScreen() {
           
           setChats([aiAssistantChat]);
         } else {
-          console.log('❌ No AI assistant chat found, creating default');
           
           const aiAssistantChat: GroupChat = {
             id: assistantChatId,
@@ -131,9 +128,7 @@ export default function MessagesScreen() {
           setChats([aiAssistantChat]);
         }
         
-        console.log('[Messages] Demo/Dev mode: showing only AI Assistant chat');
       } else {
-        console.log('📱 Loading regular chats for non-demo/dev account');
         
         // Regular chats for non-demo accounts
         setChats([
@@ -164,10 +159,8 @@ export default function MessagesScreen() {
             avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
           },
         ]);
-        console.log('[Messages] Regular mode: showing all chats');
       }
     } catch (error) {
-      console.error('Error loading chats:', error);
       setChats([]);
     }
   };

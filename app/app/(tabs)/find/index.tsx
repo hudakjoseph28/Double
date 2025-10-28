@@ -109,7 +109,6 @@ export default function FindScreen() {
 
       setSearchResults(enhancedResults);
     } catch (error) {
-      console.error('Search error:', error);
       setSearchResults([]);
     } finally {
       setLoading(false);

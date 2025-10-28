@@ -407,7 +407,6 @@ export default function ChatScreen() {
 
         messageStore.subscribe(chatIdStr, handleChatUpdate);
       } else {
-        console.log('No AI assistant chat found in storage, creating default');
         
         // Create default AI assistant chat
         const defaultAIChat: GroupChat = {
@@ -445,7 +444,6 @@ Ask me anything—from how matching works to how the backend is wired. If we're 
         messageStore.subscribe(chatIdStr, handleChatUpdate);
       }
     } catch (error) {
-      console.error('Error loading AI assistant chat:', error);
     }
   };
 
@@ -585,7 +583,6 @@ Keep responses helpful, friendly, and informative. You can discuss both user exp
       store.addMessage(chatIdStr, responseMessage);
       
     } catch (error) {
-      console.error('AI response error:', error);
       
       // Enhanced fallback responses based on message content
       let fallbackResponse = '';
@@ -951,7 +948,6 @@ What would you like to explore first? 🌟`;
             store.addMessage(chatIdStr, botMessage);
             
           } catch (error) {
-            console.warn(`AI response failed for ${bot.name}, using fallback`);
             
             // Fallback to simple responses
             const response = `Thanks for your message! I'm ${bot.name} and I'm here to help with DoubleDate.`;

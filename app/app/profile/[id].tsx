@@ -5,7 +5,7 @@ import { BlurView } from 'expo-blur';
 import Colors from '@/constants/Colors';
 import { Heart, ChevronLeft, MessageSquare } from 'lucide-react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { MOCK_USERS } from '@/verified/mockUsers';
+import { MOCK_USERS } from '@/data/verifiedMockUsers';
 import { getImageSource } from '@/utils/imageHelper';
 import Animated, { FadeIn } from 'react-native-reanimated';
 

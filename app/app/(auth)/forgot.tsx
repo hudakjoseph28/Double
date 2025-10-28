@@ -97,7 +97,6 @@ export default function ForgotPasswordScreen() {
       setEmailSent(true);
       toastService.success('Password reset instructions sent to your email');
     } catch (error) {
-      console.error('[ForgotPassword] Failed to send reset email:', error);
       toastService.error('Failed to send reset email. Please try again.');
     } finally {
       setIsLoading(false);

@@ -312,7 +312,6 @@ export default function DoubleScreen() {
             },
           });
         } catch (error) {
-          console.warn('[DoubleScreen] Error loading group profile:', error);
           // Still add the group with fallback data
           groupProfiles.push({
             group,
@@ -334,7 +333,6 @@ export default function DoubleScreen() {
       
       setGroups(groupProfiles);
     } catch (error) {
-      console.error('[DoubleScreen] Error loading groups:', error);
       setGroups([]);
     } finally {
       setLoading(false);
@@ -350,12 +348,10 @@ export default function DoubleScreen() {
         try {
           notificationService.sendLikeNotification('Alex', 'Cool Group');
         } catch (error) {
-          console.warn('⚠️ Demo notification failed:', error);
         }
       }, 5000);
 
     } catch (error) {
-      console.warn('⚠️ Error initializing services:', error);
     }
   };
 
@@ -432,7 +428,6 @@ export default function DoubleScreen() {
       }, 2000);
       
     } catch (error) {
-      console.warn('⚠️ Like sending failed:', error);
       // Still move to next group on error
       handleCancelLike();
       moveToNextGroup();
@@ -477,7 +472,6 @@ export default function DoubleScreen() {
         moveToNextGroup();
       }, 800);
     } catch (error) {
-      console.warn('⚠️ Skip tracking failed:', error);
     }
   };
 
@@ -511,7 +505,6 @@ export default function DoubleScreen() {
         groupId: currentGroup.group.id,
       });
     } catch (error) {
-      console.warn('⚠️ User switch tracking failed:', error);
     }
     
     userFlipAnim.value = withSpring(idx, { damping: 15, stiffness: 120 });
@@ -868,7 +861,6 @@ export default function DoubleScreen() {
                 method: 'modal',
               });
             } catch (error) {
-              console.warn('⚠️ Quick like tracking failed:', error);
             }
             handleLike();
           }}>
@@ -884,7 +876,6 @@ export default function DoubleScreen() {
                 groupId: currentGroup.group.id,
               });
             } catch (error) {
-              console.warn('⚠️ Message mode tracking failed:', error);
             }
           }}>
             <MessageCircle size={22} color={Colors.primary} />
@@ -917,7 +908,6 @@ export default function DoubleScreen() {
                 messageLength: message.length,
               });
             } catch (error) {
-              console.warn('⚠️ Send action tracking failed:', error);
             }
 
             // Trigger notifications
@@ -934,7 +924,6 @@ export default function DoubleScreen() {
                 );
               }
             } catch (error) {
-              console.warn('⚠️ Notification sending failed:', error);
             }
 
             setLikeModal(false); 

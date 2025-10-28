@@ -5,6 +5,37 @@ Double is a revolutionary social matching app that makes double dating effortles
 
 ---
 
+## 🚀 **Quick Start**
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- Expo CLI (`npm install -g @expo/cli`)
+
+### Installation
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd Double
+
+# Navigate to the app directory
+cd app
+
+# Option 1: Use the setup script (recommended)
+chmod +x setup.sh
+./setup.sh
+
+# Option 2: Manual installation
+npm install
+```
+
+### Running the App
+- **iOS**: Press `i` in the terminal or scan QR code with Camera app
+- **Android**: Press `a` in the terminal or scan QR code with Expo Go
+- **Web**: Press `w` in the terminal or visit `http://localhost:8081`
+
+---
+
 ## 🎬 **Live Demo Experience**
 
 ### What You'll See:
@@ -82,6 +113,36 @@ We’ve also built a branded landing page located in the `/website/` folder. It 
 ## 🧠 **Why It Matters**
 
 Double isn’t just another dating app — it’s **redefining** how people connect by making dating more social, safe, and exciting. Whether you’re showcasing this to investors, partners, or testers, it’s built to leave an impression.
+
+---
+
+## 🔧 **Troubleshooting**
+
+### Common Issues
+
+**Metro bundler cache issues:**
+```bash
+npx expo start --clear
+```
+
+**Dependency conflicts:**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**TypeScript errors:**
+```bash
+npx expo install --fix
+```
+
+### Demo Login Credentials
+- **Email**: `demo@doubledate.com`
+- **Password**: `demo123`
+
+Or use the developer account:
+- **Email**: `testing@gmail.com` 
+- **Password**: `test123`
 
 ---
 

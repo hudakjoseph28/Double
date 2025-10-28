@@ -60,7 +60,6 @@ class UserService {
         await this.create30BotUsers();
       }
     } catch (error) {
-      console.error('[UserService] Failed to initialize:', error);
     }
   }
 
@@ -70,7 +69,6 @@ class UserService {
       await AsyncStorage.setItem('@email_mapping', JSON.stringify(Object.fromEntries(this.usersByEmail)));
       await AsyncStorage.setItem('@next_user_id', this.nextUserId.toString());
     } catch (error) {
-      console.error('[UserService] Failed to save to storage:', error);
     }
   }
 
@@ -122,7 +120,6 @@ class UserService {
 
       return { success: true, user: newUser };
     } catch (error) {
-      console.error('[UserService] Account creation failed:', error);
       return { success: false, error: 'Failed to create account. Please try again.' };
     }
   }
@@ -151,7 +148,6 @@ class UserService {
 
       return { success: true, user };
     } catch (error) {
-      console.error('[UserService] Login failed:', error);
       return { success: false, error: 'Login failed. Please try again.' };
     }
   }
@@ -171,7 +167,6 @@ class UserService {
 
       return true;
     } catch (error) {
-      console.error('[UserService] Failed to update user:', error);
       return false;
     }
   }
@@ -446,7 +441,6 @@ class UserService {
       }
     }
 
-    console.log('[UserService] 30 bot users created with complete profiles and photos for testing');
   }
 
   async getBotUserCredentials(): Promise<Array<{ username: string; email: string; password: string; displayName: string }>> {

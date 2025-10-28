@@ -73,7 +73,6 @@ class NotificationService extends SimpleEventEmitter {
       }
       
       if (finalStatus !== 'granted') {
-        console.error('❌ Failed to get push token for push notification!');
         return null;
       }
 
@@ -89,7 +88,6 @@ class NotificationService extends SimpleEventEmitter {
 
       return token;
     } catch (error) {
-      console.error('🚨 Error initializing notifications:', error);
       return null;
     }
   }
@@ -97,13 +95,11 @@ class NotificationService extends SimpleEventEmitter {
   private setupNotificationListeners() {
     // Notification received while app is running
     Notifications.addNotificationReceivedListener((notification: any) => {
-      console.log('📥 Notification received:', notification);
       this.emit('notificationReceived', notification);
     });
 
     // Notification tapped/opened
     Notifications.addNotificationResponseReceivedListener((response: any) => {
-      console.log('👆 Notification tapped:', response);
       this.handleNotificationTap(response);
     });
   }
@@ -129,7 +125,6 @@ class NotificationService extends SimpleEventEmitter {
         this.emit('navigateToGroupInvite', data);
         break;
       default:
-        console.log('🤷‍♂️ Unknown notification type:', data?.type);
     }
   }
 
@@ -145,9 +140,7 @@ class NotificationService extends SimpleEventEmitter {
         },
         trigger: null, // Show immediately
       });
-      console.log('📤 Local notification sent:', notificationData.title);
     } catch (error) {
-      console.error('🚨 Error sending local notification:', error);
     }
   }
 
@@ -176,10 +169,8 @@ class NotificationService extends SimpleEventEmitter {
       });
 
       const result = await response.json();
-      console.log('📤 Push notification sent:', result);
       return result;
     } catch (error) {
-      console.error('🚨 Error sending push notification:', error);
       return null;
     }
   }
@@ -233,7 +224,6 @@ class NotificationService extends SimpleEventEmitter {
   // Clear all notifications
   async clearAllNotifications() {
     await Notifications.dismissAllNotificationsAsync();
-    console.log('🧹 All notifications cleared');
   }
 
   // Get notification badge count

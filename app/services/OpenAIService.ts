@@ -85,7 +85,6 @@ class OpenAIService {
       return aiResponse;
 
     } catch (error) {
-      console.error('[OpenAI] API request failed:', error);
       
       // Re-throw error to let chat screen handle intelligent fallbacks
       throw error;

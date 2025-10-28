@@ -69,7 +69,6 @@ export default function CompleteSetupScreen() {
 
   const handleContinue = () => {
     // Navigation will be handled by AuthGate after profile completion
-    console.log('[CompleteSetup] Profile setup complete - AuthGate will handle navigation');
   };
 
   return (

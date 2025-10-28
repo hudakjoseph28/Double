@@ -28,20 +28,10 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     const inProfileSetup = segments[0] === '(profile-setup)';
     const inTabsGroup = segments[0] === '(tabs)';
 
-    console.log('[AuthGate] Navigation Logic:', {
-      isSignedIn,
-      isProfileComplete,
-      justLoggedIn,
-      currentSegment: segments.join('/'),
-      inAuthGroup,
-      inProfileSetup,
-      inTabsGroup
-    });
 
     // SCENARIO 1 & 2: Not signed in - show login screen
     if (!isSignedIn) {
       if (!inAuthGroup) {
-        console.log('[AuthGate] Not signed in - redirecting to login');
         setIsNavigating(true);
         router.replace('/(auth)/login');
         setTimeout(() => setIsNavigating(false), 500);
@@ -52,7 +42,6 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     // SCENARIO 1: Signed in but profile incomplete - redirect to profile setup
     if (isSignedIn && !isProfileComplete) {
       if (!inProfileSetup) {
-        console.log('[AuthGate] Profile incomplete - redirecting to profile setup');
         setIsNavigating(true);
         router.replace('/(profile-setup)');
         setTimeout(() => setIsNavigating(false), 500);
@@ -63,7 +52,6 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     // SCENARIO 2 & 3: Signed in with complete profile - redirect to main app
     if (isSignedIn && isProfileComplete) {
       if (!inTabsGroup) {
-        console.log('[AuthGate] Profile complete - redirecting to double screen');
         setIsNavigating(true);
         router.replace('/(tabs)/group');
         setTimeout(() => setIsNavigating(false), 500);
@@ -71,7 +59,6 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
       
       // Clear justLoggedIn flag after successful navigation to main app
       if (justLoggedIn && inTabsGroup) {
-        console.log('[AuthGate] Clearing justLoggedIn flag');
         setTimeout(() => setJustLoggedIn(false), 1000);
       }
       return;
@@ -80,12 +67,10 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     // Handle edge case: signed in user in auth screens
     if (isSignedIn && inAuthGroup) {
       if (!isProfileComplete) {
-        console.log('[AuthGate] Signed in user in auth - redirecting to profile setup');
         setIsNavigating(true);
         router.replace('/(profile-setup)');
         setTimeout(() => setIsNavigating(false), 500);
       } else {
-        console.log('[AuthGate] Signed in user in auth - redirecting to double screen');
         setIsNavigating(true);
         router.replace('/(tabs)/group');
         setTimeout(() => setIsNavigating(false), 500);

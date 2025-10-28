@@ -55,7 +55,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const initializeAuth = async () => {
     try {
-      console.log('[AuthContext] Initializing authentication...');
       
       // Initialize UserService and GroupService
       await userService.initialize();
@@ -64,7 +63,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // DEV MODE: Check if we should force fresh login for testing
       const forceLogin = await AsyncStorage.getItem('@force_fresh_login');
       if (forceLogin === 'true') {
-        console.log('[AuthContext] DEV MODE: Forcing fresh login for testing');
         await AsyncStorage.multiRemove(['@user_data', '@remembered_session', '@force_fresh_login']);
         setState({
           isSignedIn: false,
@@ -80,7 +78,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // TEMPORARY: Force fresh login for testing - comment out auto-login
-      console.log('[AuthContext] TEMPORARY: Forcing fresh login for testing');
       await AsyncStorage.multiRemove(['@user_data', '@remembered_session']);
       setState({
         isSignedIn: false,
@@ -109,7 +106,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const user = await userService.getUserById(userId);
           
           if (user && user.rememberMe) {
-            console.log('[AuthContext] SCENARIO 3: Auto-login with remembered session for:', user.email);
             await setUserState(user);
             setJustLoggedIn(true); // Set flag for proper navigation
             setLoading(false);
@@ -126,20 +122,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (userData) {
         try {
           const user = JSON.parse(userData);
-          console.log('[AuthContext] Found existing user data, restoring session for:', user.email);
           await setUserState(user);
           setJustLoggedIn(false); // Don't trigger navigation since user is already logged in
           setLoading(false);
           return;
         } catch (error) {
-          console.error('[AuthContext] Error parsing user data:', error);
           // Clear invalid user data
           await AsyncStorage.removeItem('@user_data');
         }
       }
 
       // SCENARIO 1 & 2: Default to logged out state (show login screen)
-      console.log('[AuthContext] SCENARIO 1/2: Starting with clean login state');
       setState({
         isSignedIn: false,
         inGroup: false,
@@ -151,7 +144,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       */
     } catch (error) {
-      console.error('[AuthContext] Initialization error:', error);
     } finally {
       setLoading(false);
     }
@@ -168,7 +160,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       currentUser: user,
     };
 
-    console.log('🔄 Setting user state:', newState);
     setState(newState);
 
     // Save session if remember me is enabled
@@ -179,17 +170,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }));
     }
 
-    console.log('[AuthContext] User state updated:', {
-      userId: user.userId,
-      email: user.email,
-      isProfileComplete: user.isProfileComplete,
-      inGroup: user.inGroup,
-      isSignedIn: true
-    });
   };
 
   const createAccount = async (data: CreateAccountData) => {
-    console.log('[AuthContext] SCENARIO 1: Creating account for:', data.email);
     
     try {
       // Validate input
@@ -223,10 +206,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setJustLoggedIn(true);
 
       toastService.success(`Welcome to Double, ${result.user.displayName}!`, 'Account Created');
-      console.log('[AuthContext] SCENARIO 1: Account created and logged in:', result.user.userId);
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to create account';
-      console.error('[AuthContext] Account creation failed:', message);
       toastService.error(message, 'Account Creation Failed');
       throw error;
     }
@@ -244,31 +225,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string, rememberMe?: boolean) => {
     try {
-      console.log('🚀 [AuthContext] Login function called with:', {
-        email,
-        password: password.substring(0, 3) + '***',
-        rememberMe
-      });
       
       setLoading(true);
       
-      console.log('🔍 [AuthContext] Checking demo credentials...');
-      console.log('🔍 [AuthContext] Expected demo email:', DEMO_CREDENTIALS.email);
-      console.log('🔍 [AuthContext] Expected demo password:', DEMO_CREDENTIALS.password);
-      console.log('🔍 [AuthContext] Received email:', email);
-      console.log('🔍 [AuthContext] Received password:', password);
-      console.log('🔍 [AuthContext] Email match:', email === DEMO_CREDENTIALS.email);
-      console.log('🔍 [AuthContext] Password match:', password === DEMO_CREDENTIALS.password);
       
       // Check for demo account first
       if (email === DEMO_CREDENTIALS.email && password === DEMO_CREDENTIALS.password) {
-        console.log('🎭 [AuthContext] Demo account login detected - ENTERING DEMO FLOW');
-        console.log('🔍 Demo credentials match:', {
-          emailMatch: email === DEMO_CREDENTIALS.email,
-          passwordMatch: password === DEMO_CREDENTIALS.password,
-          expectedEmail: DEMO_CREDENTIALS.email,
-          expectedPassword: DEMO_CREDENTIALS.password
-        });
         
         // Create demo user profile
         const demoUser: User = {
@@ -299,24 +261,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         setJustLoggedIn(true);
         
-        console.log('✅ Demo account setup complete');
-        console.log('🔍 Demo user state:', {
-          isSignedIn: true,
-          userId: demoUser.userId,
-          email: demoUser.email,
-          isProfileComplete: demoUser.isProfileComplete,
-          inGroup: demoUser.inGroup
-        });
         toastService.success('Welcome to the DoubleDate demo!', 'Demo Login');
         return;
       }
       
-      console.log('❌ [AuthContext] Demo credentials did not match - continuing to regular login');
-      console.log('🔍 [AuthContext] Checking guest accounts...');
       
       // Check for guest accounts
       if (email === 'testing@gmail.com' && password === 'test123') {
-        console.log('🧪 Dev account login detected - ENTERING DEV DEMO FLOW');
         
         // Create dev user profile with full access
         const devUser: User = {
@@ -347,20 +298,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         setJustLoggedIn(true);
         
-        console.log('✅ Dev account setup complete');
-        console.log('🔍 Dev user state:', {
-          isSignedIn: true,
-          userId: devUser.userId,
-          email: devUser.email,
-          isProfileComplete: devUser.isProfileComplete,
-          inGroup: devUser.inGroup
-        });
         toastService.success('Welcome to DoubleDate Developer Demo!', 'Dev Login');
         return;
       }
       
       if (email === 'guest1@gmail.com' && password === 'guest123') {
-        console.log('🧪 Secondary guest account login detected');
         
         let guestUser = await AsyncStorage.getItem('@guest_user_guest1');
         if (!guestUser) {
@@ -386,30 +328,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Regular login logic for production users
-      console.log('🔍 [AuthContext] Checking regular user login...');
       const userData = await AsyncStorage.getItem(`@user_${email}`);
-      console.log('🔍 [AuthContext] User data found:', userData ? 'YES' : 'NO');
       
       if (userData) {
         const user = JSON.parse(userData);
-        console.log('🔍 [AuthContext] Parsed user:', { userId: user.userId, email: user.email });
         if (user.password === password) {
-          console.log('✅ [AuthContext] Regular user login successful');
           await AsyncStorage.setItem('@user_data', JSON.stringify(user));
           setState(prev => ({ ...prev, currentUser: user }));
           setJustLoggedIn(true);
         } else {
-          console.log('❌ [AuthContext] Password mismatch for regular user');
           throw new Error('Invalid password');
         }
       } else {
-        console.log('❌ [AuthContext] No user data found for email:', email);
         throw new Error('User not found');
       }
     } catch (error) {
-      console.error('❌ [AuthContext] Login error occurred:', error);
-      console.error('❌ [AuthContext] Error message:', error instanceof Error ? error.message : 'Unknown error');
-      console.error('❌ [AuthContext] Error stack:', error instanceof Error ? error.stack : 'No stack trace');
       throw error;
     } finally {
       setLoading(false);
@@ -419,7 +352,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Setup comprehensive demo environment
   const setupDemoEnvironment = async (demoUser: any) => {
     try {
-      console.log('🎭 Setting up demo environment...');
       
       // Create demo user profile with realistic data
       const demoProfile = {
@@ -457,9 +389,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Setup demo AI assistant chat
       await setupDemoAIAssistant(demoUser.userId);
       
-      console.log('✅ Demo environment setup complete');
     } catch (error) {
-      console.error('❌ Demo environment setup failed:', error);
     }
   };
 
@@ -516,15 +446,12 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
         store.setChat(assistantChatId, chatData);
       }
       
-      console.log(`✅ ${isDevAccount ? 'Dev' : 'Demo'} AI assistant chat created`);
     } catch (error) {
-      console.error('❌ AI assistant setup failed:', error);
     }
   };
 
   const logout = async () => {
     try {
-      console.log('[AuthContext] Logging out user:', state.userId);
       
       // Clear remembered session and user data
       await AsyncStorage.multiRemove(['@remembered_session', '@user_data']);
@@ -542,16 +469,13 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
 
       setJustLoggedIn(false);
       toastService.success('You have been logged out successfully');
-      console.log('[AuthContext] Logout complete');
     } catch (error) {
-      console.error('[AuthContext] Logout error:', error);
       toastService.error('Failed to logout properly');
     }
   };
 
   const forceLogout = async () => {
     try {
-      console.log('[AuthContext] FORCE LOGOUT - Clearing all auth data');
       
       // Clear all auth-related data
       await AsyncStorage.multiRemove([
@@ -576,9 +500,7 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
       });
 
       setJustLoggedIn(false);
-      console.log('[AuthContext] Force logout complete - will show login on restart');
     } catch (error) {
-      console.error('[AuthContext] Force logout error:', error);
     }
   };
 
@@ -596,7 +518,6 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
       
       return isComplete;
     } catch (error) {
-      console.error('[AuthContext] Profile completion check failed:', error);
       return false;
     }
   };
@@ -618,9 +539,7 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
       setJustLoggedIn(false);
 
       toastService.success('Profile completed! Welcome to Double!');
-      console.log('[AuthContext] Profile marked as complete for:', state.userId);
     } catch (error) {
-      console.error('[AuthContext] Failed to mark profile complete:', error);
       toastService.error('Failed to update profile status');
     }
   };
@@ -639,16 +558,13 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
         inGroup: updates.inGroup ?? prev.inGroup,
       }));
 
-      console.log('[AuthContext] User data updated:', state.userId);
     } catch (error) {
-      console.error('[AuthContext] Failed to update user data:', error);
       toastService.error('Failed to update user data');
     }
   };
 
   const resetAllData = async () => {
     try {
-      console.log('[AuthContext] Resetting all data');
       
       // Clear all stored sessions and data
       await AsyncStorage.multiRemove([
@@ -676,9 +592,7 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
 
       setJustLoggedIn(false);
       toastService.success('All data reset successfully - ready for fresh signup!');
-      console.log('[AuthContext] All data reset complete');
     } catch (error) {
-      console.error('[AuthContext] Failed to reset all data:', error);
       toastService.error('Failed to reset all data');
     }
   };
@@ -686,15 +600,12 @@ ${isDevAccount ? '\n🧪 **Developer Mode**: You have full access to test all fe
   // Setup guest demo data
   const setupGuestDemoData = async () => {
     try {
-      console.log('🧪 Setting up guest demo data...');
       
       // Initialize services if needed
       const groupService = GroupService.getInstance();
       await groupService.createBotGroups();
       
-      console.log('✅ Guest demo data setup complete');
     } catch (error) {
-      console.error('❌ Guest demo data setup failed:', error);
     }
   };
 

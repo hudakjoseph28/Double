@@ -140,7 +140,6 @@ export default function SignupScreen() {
 
       // Navigation will be handled by AuthGate after successful account creation
     } catch (error) {
-      console.error('[SignupScreen] Signup failed:', error);
       // Error toast is handled in AuthContext
     } finally {
       setIsLoading(false);

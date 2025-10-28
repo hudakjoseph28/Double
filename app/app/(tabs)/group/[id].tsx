@@ -8,7 +8,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { TabBarContext } from '../_layout';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getImageSource } from '@/data/mockUsers';
+import { getImageSource } from '@/utils/imageHelper';
 
 const { width } = Dimensions.get('window');
 const HEADER_HEIGHT = 60;
