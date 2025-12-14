@@ -79,7 +79,7 @@ export default function PhotosSetupScreen() {
           id: Date.now().toString(),
           uri: result.assets[0].uri,
         };
-        setPhotos(prev => [...prev, newPhoto]);
+        setPhotos((prev: Photo[]) => [...prev, newPhoto]);
       }
     } catch (error) {
       Alert.alert('Error', 'Failed to pick image');
@@ -89,7 +89,7 @@ export default function PhotosSetupScreen() {
   };
 
   const removePhoto = (id: string) => {
-    setPhotos(prev => prev.filter(photo => photo.id !== id));
+    setPhotos((prev: Photo[]) => prev.filter((photo: Photo) => photo.id !== id));
   };
 
   const canContinue = photos.length >= 2;
